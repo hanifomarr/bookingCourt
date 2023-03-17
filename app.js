@@ -15,6 +15,7 @@ const app = express();
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.render("home");
@@ -23,6 +24,16 @@ app.get("/", (req, res) => {
 app.get("/venue", async (req, res) => {
   const venues = await Venue.find({});
   res.render("venues/index", { venues });
+});
+
+app.get("/venue/new", (req, res) => {
+  res.render("venues/new");
+});
+
+app.post("/venue", async (req, res) => {
+  const newVenue = new Venue(req.body.venue);
+  await newVenue.save();
+  res.redirect(`/venue/${newVenue._id}`);
 });
 
 app.get("/venue/:id", async (req, res) => {
