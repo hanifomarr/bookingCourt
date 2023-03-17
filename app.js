@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const Venue = require("./models/venue");
+const methodOverride = require("method-override");
 
 mongoose.connect("mongodb://127.0.0.1:27017/vortax");
 
@@ -16,6 +17,7 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 app.get("/", (req, res) => {
   res.render("home");
@@ -40,6 +42,18 @@ app.get("/venue/:id", async (req, res) => {
   const { id } = req.params;
   const venue = await Venue.findById(id);
   res.render("venues/show", { venue });
+});
+
+app.get("/venue/:id/edit", async (req, res) => {
+  const { id } = req.params;
+  const venue = await Venue.findById(id);
+  res.render("venues/edit", { venue });
+});
+
+app.put("/venue/:id", async (req, res) => {
+  const { id } = req.params;
+  const updateVenue = await Venue.findByIdAndUpdate(id, { ...req.body.venue });
+  res.redirect(`/venue/${updateVenue._id}`);
 });
 
 app.listen(3000, () => {
