@@ -21,13 +21,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/venue", async (req, res) => {
-  const newVenue = new Venue({
-    name: "IOI Sport Centre",
-    location: "Putrajaya",
-    desc: "Luxury sport venue in the new  wing of IOI City Mall",
-  });
-  await newVenue.save();
-  res.send(newVenue);
+  const venues = await Venue.find({});
+  res.render("venues/index", { venues });
+});
+
+app.get("/venue/:id", async (req, res) => {
+  const { id } = req.params;
+  const venue = await Venue.findById(id);
+  res.render("venues/show", { venue });
 });
 
 app.listen(3000, () => {
