@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const ejsMate = require("ejs-mate");
 const Venue = require("./models/venue");
 const methodOverride = require("method-override");
 
@@ -13,6 +14,7 @@ db.once("open", () => {
 });
 
 const app = express();
+app.engine("ejs", ejsMate);
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -54,6 +56,12 @@ app.put("/venue/:id", async (req, res) => {
   const { id } = req.params;
   const updateVenue = await Venue.findByIdAndUpdate(id, { ...req.body.venue });
   res.redirect(`/venue/${updateVenue._id}`);
+});
+
+app.delete("/venue/:id", async (req, res) => {
+  const { id } = req.params;
+  await Venue.findByIdAndDelete(id);
+  res.redirect("/venue");
 });
 
 app.listen(3000, () => {

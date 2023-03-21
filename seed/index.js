@@ -18,9 +18,13 @@ const seedDB = async () => {
   await Venue.deleteMany({});
   for (let i = 0; i < 50; i++) {
     const random = Math.floor(Math.random() * 1000);
+    const price = Math.floor(Math.random() * 35) + 10;
     const newVenue = new Venue({
       name: `${sample(descriptors)} ${sample(places)}`,
       location: `${cities[random].city}, ${cities[random].state}`,
+      img: "https://placeimg.com/640/480/any",
+      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, eligendi!",
+      price: price,
     });
     await newVenue.save();
   }
