@@ -1,14 +1,35 @@
 <% layout("layouts/boilerplate") -%>
-    <h1>Add new venue</h1>
-    <form action="/venue" method="post">
-        <div>
-            <label for="name">Name</label>
-            <input type="text" placeholder="Name" id="name" name="venue[name]">
+    <div class="row">
+        <h1 class="text-center">Add new venue</h1>
+        <div class="col-6 offset-3">
+            <form action="/venue" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Venue Name</label>
+                    <input type="text" class="form-control" id="name" name="venue[name]">
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" class="form-control" id="location" name="venue[location]">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="price-addon1">RM</span>
+                        <input type="text" class="form-control" placeholder="0.0" aria-label="price"
+                            aria-describedby="price-addon1" name="venue[price]">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="desc" class="form-label">Description</label>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Put description here" id="desc" name="venue[desc]"
+                            style=" height: 100px"></textarea>
+                    </div>
+                </div>
+
+                <button class="btn btn-success">Submit</button>
+                <a href="/venue" class="btn">Cancel</a>
+            </form>
         </div>
-        <div>
-            <label for="location">Location</label>
-            <input type="text" placeholder="Name" id="location" name="venue[location]">
-        </div>
-        <button>Submit</button>
-    </form>
-    <a href="/venue">Cancel</a>
+    </div>

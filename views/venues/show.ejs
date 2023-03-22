@@ -1,18 +1,35 @@
 <% layout("layouts/boilerplate") -%>
-    <h1>VENUE</h1>
-    <h2>Venue Name: <%= venue.name %>
-    </h2>
-    <p>Location: <%= venue.location %>
-    </p>
-    <p>
-        RM <%= venue.price %>
-    </p>
-    <img src="<%= venue.img %>" alt="">
-    <p>
-        <%= venue.desc %>
-    </p>
-    <a href="/venue/<%= venue._id %>/edit">Edit</a>
-    <a href="/venue">back</a>
-    <form action="/venue/<%= venue._id %>?_method=DELETE" method="post">
-        <button>Delete</button>
-    </form>
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="card">
+                <img src="<%= venue.img %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= venue.name %>
+                    </h5>
+                    <p class="card-text">
+                        <%= venue.desc %>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">RM <%= venue.price %>
+                    </li>
+                    <li class="list-group-item">
+                        <%= venue.location %>
+                    </li>
+                </ul>
+                <div class=" d-flex justify-content-between card-body">
+                    <div>
+                        <a href="/venue/<%= venue._id %>/edit" class="card-link btn btn-primary text-white">Update
+                            Venue</a>
+                        <a href="/venue" class="btn card-link">Back</a>
+                    </div>
+                    <div>
+                        <form action="/venue/<%= venue._id %>?_method=DELETE" method="post">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
