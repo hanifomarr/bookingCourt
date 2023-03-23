@@ -2,22 +2,23 @@
     <div class="row">
         <h1 class="text-center">Edit Venue</h1>
         <div class="col-6 offset-3">
-            <form action="/venue/<%= venue._id %>?_method=PUT" method="post">
+            <form action="/venue/<%= venue._id %>?_method=PUT" method="post" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="name" class="form-label">Venue Name</label>
-                    <input type="text" class="form-control" id="name" name="venue[name]" value="<%= venue.name %>">
+                    <input type="text" class="form-control" id="name" name="venue[name]" value="<%= venue.name %>"
+                        required>
                 </div>
                 <div class="mb-3">
                     <label for="location" class="form-label">Location</label>
                     <input type="text" class="form-control" id="location" name="venue[location]"
-                        value="<%= venue.location %>">
+                        value="<%= venue.location %>" required>
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="price-addon1">RM</span>
                         <input type="text" class="form-control" placeholder="0.0" aria-label="price"
-                            aria-describedby="price-addon1" name="venue[price]" value="<%= venue.price %>">
+                            aria-describedby="price-addon1" name="venue[price]" value="<%= venue.price %>" required>
                     </div>
                 </div>
 
@@ -25,7 +26,7 @@
                     <label for="desc" class="form-label">Description</label>
                     <div class="form-floating">
                         <textarea class="form-control" placeholder="Put description here" id="desc" name="venue[desc]"
-                            style=" height: 100px"><%=venue.desc %></textarea>
+                            style=" height: 100px" required><%=venue.desc %></textarea>
                     </div>
                 </div>
 

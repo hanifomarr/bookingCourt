@@ -2,21 +2,30 @@
     <div class="row">
         <h1 class="text-center">Add new venue</h1>
         <div class="col-6 offset-3">
-            <form action="/venue" method="post">
+            <form action="/venue" method="post" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="name" class="form-label">Venue Name</label>
-                    <input type="text" class="form-control" id="name" name="venue[name]">
+                    <input type="text" class="form-control" id="name" name="venue[name]" required>
+                    <div class="invalid-feedback">
+                        Please insert a venue name.
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="location" name="venue[location]">
+                    <input type="text" class="form-control" id="location" name="venue[location]" required>
+                    <div class="invalid-feedback">
+                        Please choose a location.
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="price-addon1">RM</span>
                         <input type="text" class="form-control" placeholder="0.0" aria-label="price"
-                            aria-describedby="price-addon1" name="venue[price]">
+                            aria-describedby="price-addon1" name="venue[price]" required>
+                        <div class="invalid-feedback">
+                            Please insert price.
+                        </div>
                     </div>
                 </div>
 
@@ -24,7 +33,10 @@
                     <label for="desc" class="form-label">Description</label>
                     <div class="form-floating">
                         <textarea class="form-control" placeholder="Put description here" id="desc" name="venue[desc]"
-                            style=" height: 100px"></textarea>
+                            style=" height: 100px" required></textarea>
+                        <div class="invalid-feedback">
+                            Please insert a description.
+                        </div>
                     </div>
                 </div>
 
