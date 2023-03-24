@@ -94,8 +94,11 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  const { status = 500, message = "Something Wrong" } = err;
-  res.status(status).send(message);
+  const { status = 500 } = err;
+  if (!err.message) {
+    err.message = "Something Wrong";
+  }
+  res.status(status).render("error", { err });
 });
 
 app.listen(3000, () => {
